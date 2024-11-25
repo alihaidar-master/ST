@@ -40,7 +40,7 @@ def _check_is_bounding_box_valid(bounding_box, image_size):
     if not (bounding_box[0] < bounding_box[2] and bounding_box[1] < bounding_box[3]):
         return False
 
-    image_bounding_box = torch.zeros((4, ), dtype=torch.float64)
+    image_bounding_box = torch.zeros((4, ), dtype=torch.float64,device="cuda")
     image_bounding_box[2: 4] = image_size
 
     return bbox_is_valid_vectorized(bbox_compute_intersection_vectorized(bounding_box, image_bounding_box))

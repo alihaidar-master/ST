@@ -3,9 +3,18 @@ import argparse
 
 def get_train_args_parser():
     parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument('method_name', type=str, help='Method name')
-    parser.add_argument('config_name', type=str, help='Config name')
-    parser.add_argument('--output_dir', help='path where to save, empty for no saving')
+    parser.add_argument('--method_name', default = 'SwinTrack', type=str, help='Method name')
+    parser.add_argument('--config_name', default = 'Tiny', type=str, help='Config name')
+    parser.add_argument('--mixin_config', default= 'evaluation.yaml', type=str, action='append')
+    parser.add_argument('--output_dir', default= 'C:/Users/aalih/Documents/SwinTrack/output', help='path where to save, empty for no saving')
+
+    # parser.add_argument('--mixin_config', default= 'got10k.yaml', type=str, action='append')
+    # parser.add_argument('--output_dir', default= '/home/lab/Documents/swinTrack/SwinTrack/output', help='path where to save, empty for no saving')
+
+    # parser.add_argument('method_name', type=str, help='Method name')
+    # parser.add_argument('config_name', type=str, help='Config name')
+
+    # parser.add_argument('--output_dir', help='path where to save, empty for no saving')
     parser.add_argument('--device', default='cuda',
                         help='device to use for training / testing')
     parser.add_argument('--seed', default=42, type=int)
@@ -25,7 +34,7 @@ def get_train_args_parser():
     parser.add_argument('--do_sweep', action='store_true')
     parser.add_argument('--sweep_config', type=str)
 
-    parser.add_argument('--mixin_config', type=str, action='append')
+    # parser.add_argument('--mixin_config', type=str, action='append')
 
     parser.add_argument('--run_id', type=str)
 
@@ -36,7 +45,7 @@ def get_train_args_parser():
     parser.add_argument('--distributed_do_spawn_workers', action='store_true')
 
     parser.add_argument('--conf_seed', default=42, type=int)
-    parser.add_argument('--wandb_distributed_aware', action='store_true')
+    parser.add_argument('--wandb_distributed_aware', default=False, action='store_true')
 
     parser.add_argument('--debug', action='store_true')
 

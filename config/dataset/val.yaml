@@ -21,6 +21,6 @@ datasets:
     splits:
       - "val"
 
-  LaSOT:
-    splits:
-      - "val"
+  # LaSOT:
+  #   splits:
+  #     - "val"

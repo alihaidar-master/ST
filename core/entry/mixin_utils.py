@@ -69,15 +69,21 @@ def apply_mixin_rules(mixin_rules, config, dynamic_values):
 
 def get_mixin_config(args):
     configs = []
-    for mixin_config in args.mixin_config:
-        if mixin_config.startswith('/' or '\\'):
-            config_path = os.path.join(args.config_path, mixin_config[1:])
-        else:
-            config_path = os.path.join(args.config_path, args.method_name, args.config_name, 'mixin', mixin_config)
-            if not os.path.exists(config_path):
-                config_path = os.path.join(args.config_path, 'mixin', mixin_config)
-        assert os.path.exists(config_path), 'Mixin config not found: {}'.format(config_path)
-        configs.append(load_yaml(config_path))
+    config_path = os.path.join(args.config_path, args.method_name, args.config_name, 'mixin', args.mixin_config)
+    if not os.path.exists(config_path):
+        config_path = os.path.join(args.config_path, 'mixin', args.mixin_config)
+    assert os.path.exists(config_path), 'Mixin config not found: {}'.format(config_path)
+    configs.append(load_yaml(config_path))
+
+    # for mixin_config in args.mixin_config:
+    #     if mixin_config.startswith('/' or '\\'):
+    #         config_path = os.path.join(args.config_path, mixin_config[1:])
+    #     else:
+    #         config_path = os.path.join(args.config_path, args.method_name, args.config_name, 'mixin', mixin_config)
+    #         if not os.path.exists(config_path):
+    #             config_path = os.path.join(args.config_path, 'mixin', mixin_config)
+    #     assert os.path.exists(config_path), 'Mixin config not found: {}'.format(config_path)
+    #     configs.append(load_yaml(config_path))
     return configs
 
 

@@ -25,9 +25,9 @@ def memory_mapped_constructor_common_preliminary_works(base_dataset: dict, base_
 
         bounding_box_data_type = base_dataset['context']['bounding_box_data_type']
         if bounding_box_data_type == 'int':
-            bounding_box_data_type = np.int
+            bounding_box_data_type = np.int64
         elif bounding_box_data_type == 'float':
-            bounding_box_data_type = np.float
+            bounding_box_data_type = np.float64
         else:
             raise RuntimeError(f"Unknown value {bounding_box_data_type}")
     else:

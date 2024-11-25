@@ -42,15 +42,18 @@ def entry(runtime_vars):
         update_output_dir(runtime_vars)
     wandb_instance = None
     if runtime_vars.wandb_distributed_aware or not is_dist_available_and_initialized():
+    # if runtime_vars.wandb_distributed_aware:
         from .setup_wandb import setup_wandb
-        wandb_instance = setup_wandb(runtime_vars, config, str(host_names))
+        # wandb_instance = setup_wandb(runtime_vars, config, str(host_names))
+        wandb_instance = None
         if runtime_vars.do_sweep:
             runtime_vars.run_id = wandb_instance.id
             update_output_dir(runtime_vars)
     else:
         if is_main_process():
             from .setup_wandb import setup_wandb
-            wandb_instance = setup_wandb(runtime_vars, config, str(host_names))
+            # wandb_instance = setup_wandb(runtime_vars, config, str(host_names))
+            wandb_instance = None
 
         if runtime_vars.do_sweep:
             if is_main_process():

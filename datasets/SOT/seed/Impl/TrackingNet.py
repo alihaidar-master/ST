@@ -59,7 +59,7 @@ def construct_TrackingNet(constructor: SingleObjectTrackingDatasetConstructor, s
     for sequence, sequence_image_path, sequence_bounding_box_annotation_file_path in sequence_list:
         with constructor.new_sequence(category_name_id_map[sequence_name_class_map[sequence]]) as sequence_constructor:
             sequence_constructor.set_name(sequence)
-            bounding_boxes = np.loadtxt(sequence_bounding_box_annotation_file_path, dtype=np.float, delimiter=',')
+            bounding_boxes = np.loadtxt(sequence_bounding_box_annotation_file_path, dtype=np.float64, delimiter=',')
             images = os.listdir(sequence_image_path)
             images = [image for image in images if image.endswith('.jpg')]
             if bounding_boxes.ndim == 2:

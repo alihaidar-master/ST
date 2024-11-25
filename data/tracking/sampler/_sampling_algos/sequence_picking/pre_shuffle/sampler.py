@@ -5,7 +5,7 @@ import copy
 class PreShuffledSequencePicker:
     def __init__(self, datasets, datasets_sampling_probability, total_size, seed):
         sizes = datasets_sampling_probability * total_size
-        sizes = sizes.astype(np.int)
+        sizes = sizes.astype(np.int64)
         sizes[-1] = total_size - sum(sizes[:len(sizes) - 1])
 
         rng_engine = np.random.Generator(np.random.PCG64(seed))

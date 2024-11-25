@@ -33,7 +33,7 @@ class _SequentialDatasetWrapper:
 
         image_path, bbox = self.sequence.current()
         self.template_image_path = image_path
-        self.template_object_bbox = bbox.astype(np.float)
+        self.template_object_bbox = bbox.astype(np.float64)
         self.position = 1
         if not isinstance(sequence, DETImageSequentialSamplerAdaptor):
             assert self.sequence.move_next()
@@ -65,7 +65,7 @@ class _SequentialDatasetWrapper:
     def current(self):
         image_path, bbox = self.sequence.current()
         if bbox is not None:
-            bbox = bbox.astype(np.float)
+            bbox = bbox.astype(np.float64)
         return image_path, bbox
 
     def get_template(self):

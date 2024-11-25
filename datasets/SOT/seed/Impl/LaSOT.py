@@ -69,7 +69,7 @@ def construct_LaSOT(constructor: SingleObjectTrackingDatasetConstructor, seed):
 
             sequence_path = os.path.join(class_path, sequence_name)
             groundtruth_file_path = os.path.join(sequence_path, 'groundtruth.txt')
-            bounding_boxes = np.loadtxt(groundtruth_file_path, dtype=np.int, delimiter=',')
+            bounding_boxes = np.loadtxt(groundtruth_file_path, dtype=np.int64, delimiter=',')
             bounding_boxes[:, 0:2] -= 1
             full_occlusion_file_path = os.path.join(sequence_path, 'full_occlusion.txt')
             is_fully_occlusions = np.loadtxt(full_occlusion_file_path, dtype=np.bool, delimiter=',')
